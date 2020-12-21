@@ -9,7 +9,7 @@ class AnimalsController < ApplicationController
   # Show One By ID
   def show
     animal = Animal.find(params[:id])
-    render json: animal
+    render json: animal.to_json(include: :sightings)
   end
 
   # Create New Animal

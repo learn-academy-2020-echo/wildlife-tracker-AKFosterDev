@@ -18,7 +18,7 @@ def create
   if sighting.valid?
     render json: sighting
   else
-    render json: sighting.errors
+    render json: { message: 'Validation Failed', errors: sighting.errors }, status: 422
   end
 end
 

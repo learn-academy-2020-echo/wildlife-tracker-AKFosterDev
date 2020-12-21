@@ -18,7 +18,7 @@ class AnimalsController < ApplicationController
     if animal.valid?
       render json: animal
     else
-      render json: student.errors 
+      render json: { message: 'Validation Failed', errors: animal.errors }, status: 422  
     end
   end
 
@@ -46,7 +46,7 @@ class AnimalsController < ApplicationController
 
   private
   def animal_params 
-    params.require(:animal).permit(:common_name, :latin_name, :kingdom)
+    params.require(:animal).permit(:common_name, :latin_name, :kingdom, sighting_attributes: [ :date, :lat, :lng ])
   end
 
 
